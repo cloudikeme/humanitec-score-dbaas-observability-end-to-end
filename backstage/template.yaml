@@ -1,9 +1,9 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: 5min-nodejs-service-template
-  title: 5min IDP - NodeJS Service Template
-  description: An example template that creates a simple Hello World service
+  name: ikeme-dbaas-node-service-template
+  title: Ikeme DbaaS NodeJS Service Template
+  description: An example template that creates a simple Hello World service with a DbaaS
   tags:
     - score
     - humanitec
@@ -12,7 +12,7 @@ spec:
   type: service
 
   parameters:
-    - title: New NodeJS Service
+    - title: New DBaaS NodeJS Service
       required:
         - componentName
       properties:
