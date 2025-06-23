@@ -14,7 +14,7 @@ const connection = mysql.createConnection({
 const requestHandler = async (request, response) => {
   console.log(request.url);
 
-  const message = process.env.MESSAGE || " Oga Hello, World!";
+  const message = process.env.MESSAGE || "Hello, World!";
 
   // Run hello world query
   const [rows, fields] = await connection.promise().query(
