@@ -1,0 +1,58 @@
+apiVersion: entity.humanitec.io/v1b1
+kind: Definition
+metadata:
+  id: ikeme-postgres
+entity:
+  name: ikeme-postgres
+  type: postgres
+  driver_type: humanitec/template
+  driver_inputs:
+    values:
+      templates:
+        init: |-
+          name: ikeme-cluster
+          secret: ikeme-cluster-secret
+          port: 5432
+          user: cloudikeme
+          password: energy
+        manifests: |-
+          secret.yaml:
+            location: namespace
+            data:
+              apiVersion: v1
+              kind: Secret
+              metadata:
+                name: {{ .init.secret }}
+              type: kubernetes.io/basic-auth
+              data:
+                username: {{ .init.user | b64enc }}
+                password: {{ .init.password | b64enc }}
+          pgcluster.yaml:
+            location: namespace
+            data:
+              apiVersion: postgresql.cnpg.io/v1
+              kind: Cluster
+              metadata:
+                name: {{ .init.name }}
+              spec:
+                instances: 1
+                storage:
+                  size: 100M
+                bootstrap:
+                  initdb:
+                    database: {{ .init.name }}
+                    owner: {{ .init.user }}
+                    secret:
+                      name: {{ .init.secret }}
+                monitoring:
+                  enablePodMonitor: true
+        outputs: |
+          host: {{ .init.name }}-rw
+          name: {{ .init.name }}
+          port: {{ .init.port }}
+        secrets: |
+          username: {{ .init.user }}
+          password: {{ .init.password }}
+  criteria:
+    - app_id: 5min-idp-ddhr-postgres
+      class: default

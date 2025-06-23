@@ -1,0 +1,15 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: ikeme-cluster
+spec:
+  instances: 1
+
+  storage:
+    size: 100M
+  bootstrap:
+    initdb:
+      database: ikeme-cluster
+      owner: cloudikeme
+      secret:
+        name: ikeme-cluster-secret
