@@ -10,7 +10,7 @@ service:
       targetPort: 3000
 containers:
   hello-world:
-    image: ghcr.io/score-spec/sample-score-app
+    image: .
     variables:
       PORT: "3000"
       MESSAGE: "I Hate Hello, World!"

@@ -14,7 +14,7 @@ const connection = mysql.createConnection({
 const requestHandler = async (request, response) => {
   console.log(request.url);
 
-  const message = process.env.MESSAGE || "Hello, World!";
+  const message = process.env.MESSAGE || " Oga Hello, World!";
 
   // Run hello world query
   const [rows, fields] = await connection.promise().query(
@@ -29,7 +29,7 @@ const requestHandler = async (request, response) => {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
       <div class="container text-center mt-5 pt-5">
       <h1>${message}</h1>
-      <p>This is an application talking to a MySQL <code>${version}</code> database on host <code>${host}</code>, deployed with Score!</p>
+      <p>This is an application talking to a CloudnativePG DBaaS <code>${version}</code> database on host <code>${host}</code>, deployed with Score!</p>
       </div>
     </body>
   </html>
