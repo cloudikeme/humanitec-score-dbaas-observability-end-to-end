@@ -54,5 +54,5 @@ entity:
           username: {{ .init.user }}
           password: {{ .init.password }}
   criteria:
-    - app_id: 5min-idp-ddhr-postgres
-      class: default
+    - app_id: ikeme-postgres
+      class: dbaas
